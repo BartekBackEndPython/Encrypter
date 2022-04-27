@@ -3,11 +3,14 @@ how encryption works:
     it replaces each letter to it's number in alphabet and between each number it inserts "39"
 '''
 
+#I wrote that around January 2022.
+
+
 from os import system
+import reverse_string
 
 
 system("title Encrypter")
-
 
 
 def encrypter(text):
@@ -15,6 +18,8 @@ def encrypter(text):
     low_letter_text = text.lower()
 
     encrypted_text = low_letter_text
+    encrypted_text = reverse_string.reverse_string(encrypted_text)
+
 
     letters = " abcdefghijklmnoprstuwyzqxv"
 
@@ -27,30 +32,37 @@ def encrypter(text):
 def decrypter(text):
 
     encrypted_text = text
+    encrypted_text = str(encrypted_text)
+    encrypted_text = reverse_string.reverse_string(encrypted_text)
+    encrypted_text = int(encrypted_text)
+
 
     letters = " abcdefghijklmnoprstuwyzqxv"
 
     str_tekst_s = str(encrypted_text)
 
-    str_tekst_s = str_tekst_s.replace("39", " ")
+    str_tekst_s = str_tekst_s.replace("93", " ")
     str_tekst_s = str_tekst_s.split()
 
     end_value = []
 
+    for index, number in enumerate(str_tekst_s):
+        str_tekst_s[index] = reverse_string.reverse_string(number)
+
     for number in str_tekst_s:
         end_value.append(letters[int(number)])
 
-    str_end_value = str(end_value)
-    str_end_value = str_end_value.replace("[", "")
-    str_end_value = str_end_value.replace("]", "")
-    str_end_value = str_end_value.replace("'", "")
-    str_end_value = str_end_value.replace(",", "")
-    str_end_value = str_end_value.replace("  ", "_")
-    str_end_value = str_end_value.replace(" ", "")
-    str_end_value = str_end_value.replace("_", " ")
+    return_that = ""
+
+    for i in end_value:
+        return_that += i
 
 
-    return str_end_value
+    return return_that
+
+
+
+#I wrote that 05.04.2022
 
 
 
